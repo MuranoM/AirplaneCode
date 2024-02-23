@@ -1,0 +1,59 @@
+// See https://aka.ms/new-console-template for more information
+
+namespace Airplanev2
+{
+    internal class Airplane
+    {
+        private int _weight; // Attributes with use of access modifiers for encapsulation
+        private int _fuel;
+        private int _passengers;
+        public Airplane(int weight, int fuel, int passengers) // Constructor
+        {
+            this._weight = weight;
+            this._fuel = fuel;
+            this._passengers = passengers;
+        }
+
+        public void setWeight(int enteredweight) // Setter method void does not return value
+        {
+            int maxweight = 9000;
+            if (enteredweight > maxweight)
+            {
+                Console.WriteLine("Too Heavy");
+            }
+            else
+            {
+                this._weight = enteredweight;
+            }
+        }
+        public int getWeight() // getter method returns value
+        {
+            return _weight;
+        }
+
+        public virtual void radiomessage() // Virtual keyword allows method to be overrideen in derived class
+        {
+            Console.WriteLine("Air Traffic Control requesting a landing");
+        }
+
+        public class FighterJet : Airplane  //Inheritance
+        {
+            private string _weapons;
+            private bool _supersonic;
+
+            public FighterJet(int weight, int fuel, int passengers, string weapons, bool supersonic)
+                : base(weight, fuel, passengers) // Inside derived class parameterised constructor
+                                                 //base invokes the constructor of the base class
+            {
+                this._weapons = weapons;
+                this._supersonic = supersonic;
+            }
+            public override void radiomessage() // Override used example of polymorphism
+            {
+                Console.WriteLine("Air Traffic Control we are requesting permission to flypast");
+            }
+
+        }
+    }
+}
+
